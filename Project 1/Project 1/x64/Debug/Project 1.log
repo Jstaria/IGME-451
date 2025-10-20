@@ -1,2 +1,7 @@
 ﻿  Project 1.cpp
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Project 1.cpp(57,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Project 1.cpp(66,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Project 1.cpp(75,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Project 1.cpp(84,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Project 1.cpp(93,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   Project 1.vcxproj -> C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\x64\Debug\Project 1.exe

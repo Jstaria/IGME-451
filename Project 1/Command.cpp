@@ -2,11 +2,16 @@
 
 using namespace std;
 
-Command::Command(void (*func)(string)) : func(func)
+Command::Command() { func = Empty; }
+Command::Command(void (*func)(vector<std::string>)) : func(func)
 {
 }
 
-void Command::CallCommand(string call)
+void Command::Empty(std::vector<std::string> args) {}
+
+void Command::CallCommand(vector<std::string> args)
 {
-	func(call);
+	if (args.size() == 0) return;
+	if (func != nullptr)
+		func(args);
 }
