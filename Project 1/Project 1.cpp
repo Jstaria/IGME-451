@@ -3,26 +3,31 @@
 
 #include <iostream>
 #include <map>
-#include "Command.h"
 #include <cstdint>
 #include <cstdlib>
 #include <cctype>
 #include <sstream>
+#include <vector>
 #include <algorithm>
+
+#include "Command.h"
+#include "Memory.h"
+#include "Process.h"
+#include "BackingStore.h"
 
 using namespace std;
 
-int bitWidth = 1;
-int pageWidth = 1;
-int cacheWidth = 1;
-int frameWidth = 1;
-int backStoreWidth = 1;
+int bitWidth, pageWidth, cacheWidth, frameWidth, backStoreWidth;
+int blockSize, numPages, numCacheBlocks, numFrames, numStoreBlocks;
 
-string cacheMode = "t";
-string ramMode = "t";
-string ramPolicy = "lf";
-
+bool verboseMode = false;
 bool inSim = false;
+
+Process* currentProcess;
+vector<Process*> processList;
+
+Memory memory;
+BackingStore backingStore;
 
 map<string, Command> beforeSimCommands;
 map<string, Command> inSimCommands;
@@ -60,6 +65,7 @@ void BitWidth(std::vector<std::string> args) {
     int width = pow(2, number);
     cout << "Changed byte size to: " << width << endl;
 
+    blockSize = width;
     bitWidth = number;
 }
 
@@ -73,6 +79,7 @@ void Page(std::vector<std::string> args) {
     int width = pow(2, number);
     cout << "Chnaged # of Pages to: " << width << endl;
 
+    numPages = width;
     pageWidth = number;
 }
 
@@ -86,10 +93,11 @@ void Cache(std::vector<std::string> args) {
     int width = pow(2, number);
     cout << "Chnaged # of Caches to: " << width << endl;
 
+    numCacheBlocks = width;
     cacheWidth = number;
 }
 
-void Frame(std::vector<std::string> args) {
+void CreateFrame(std::vector<std::string> args) {
     if (args.size() < 2) {
         cout << "Must have a size" << endl;
         return;
@@ -99,10 +107,11 @@ void Frame(std::vector<std::string> args) {
     int width = pow(2, number);
     cout << "Chnaged # of Frames to: " << width << endl;
 
+    numFrames = width;
     frameWidth = number;
 }
 
-void BackingStore(std::vector<std::string> args) {
+void CreateBackingStore(std::vector<std::string> args) {
     if (args.size() < 2) {
         cout << "Must have a size" << endl;
         return;
@@ -112,6 +121,7 @@ void BackingStore(std::vector<std::string> args) {
     int width = pow(2, number);
     cout << "Chnaged # of Backing Stores to: " << width << endl;
 
+    numStoreBlocks = width;
     backStoreWidth = number;
 }
 
@@ -121,15 +131,23 @@ void Mode(std::vector<std::string> args) {
         return;
     }
     string mode = ToLower(args[1]);
-    
+    WriteMode wm = WRITETHROUGH;
+    ReplacePolicy rp = MR;
+
     if (mode == "c") {
         
         if (ToLower(args[2]) == "b")
+        {
             cout << "Changed Cache Mode to: Write Back" << endl;
+            wm = WRITEBACK;
+        }
 
         if (ToLower(args[2]) == "t")
+        {
             cout << "Changed Cache Mode to: Write Through" << endl;
+        }
 
+        memory.cacheWriteMode = wm;
     }
 
     else if (mode == "r") {
@@ -137,30 +155,48 @@ void Mode(std::vector<std::string> args) {
         string rMode = ToLower(args[2]);
 
         if (rMode == "b")
+        {
             cout << "Changed RAM Mode to: Write Back" << endl;
+            wm = WRITEBACK;
+        }
 
         if (rMode == "t")
+        {
             cout << "Changed RAM Mode to: Write Through" << endl;
+        }
 
-        ramMode = rMode;
+        
 
         if (args.size() < 4) return;
 
         string rPolicy = ToLower(args[3]);
 
         if (rPolicy == "lr")
+        {
             cout << "Changed Replacement Policy to: Least Recently Used" << endl;
+            rp = LR;
+        }
 
         if (rPolicy == "mr")
+        {
             cout << "Changed Replacement Policy to: Most Recently Used" << endl;
+            rp = MR;
+        }
 
         if (rPolicy == "mf")
+        {
             cout << "Changed Replacement Policy to: Most Frequently Used" << endl;
+            rp = MF;
+        }
 
         if (rPolicy == "lf")
+        {
             cout << "Changed Replacement Policy to: Least Frequently Used" << endl;
+            rp = LF;
+        }
 
-        ramPolicy = rPolicy;
+        memory.memoryWriteMode = wm;
+        memory.memoryReplacePolicy = rp;
     }
 }
 
@@ -189,7 +225,10 @@ void AdvanceToNextProcess(std::vector<std::string> args) {
 }
 
 void VerboseMode(std::vector<std::string> args) {
-    cout << "Verbose mode" << endl;
+    
+    verboseMode = !verboseMode;
+
+    cout << "Verbose Toggled: " << verboseMode << endl;
 }
 
 void ReadLogicalAddress(std::vector<std::string> args) {
@@ -205,8 +244,8 @@ void SetupCommands() {
     beforeSimCommands.emplace("b", Command(BitWidth));
     beforeSimCommands.emplace("p", Command(Page));
     beforeSimCommands.emplace("c", Command(Cache));
-    beforeSimCommands.emplace("f", Command(Frame));
-    beforeSimCommands.emplace("s", Command(BackingStore));
+    beforeSimCommands.emplace("f", Command(CreateFrame));
+    beforeSimCommands.emplace("s", Command(CreateBackingStore));
     beforeSimCommands.emplace("m", Command(Mode));
     beforeSimCommands.emplace("z", Command(StartSimulation));
 
@@ -227,14 +266,14 @@ int main()
 {
     SetupCommands();
 
-    std::cout << "Hello World!\n";
+    std::cout << "----------------------------------------------------------------------\n|                         Memory Simulation                          |\n----------------------------------------------------------------------\n";
 
     string input;
   
     vector<std::string> args;
 
     while (true) {
-        
+        cout << "Enter Command: ";
         getline(cin, input);
 
         args = SplitArgs(input);

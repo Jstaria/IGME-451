@@ -123,12 +123,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackingStore.cpp" />
+    <ClCompile Include="CacheBlock.cpp" />
     <ClCompile Include="Command.cpp" />
+    <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="Process.cpp" />
     <ClCompile Include="Project 1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackingStore.h" />
+    <ClInclude Include="CacheBlock.h" />
     <ClInclude Include="Command.h" />
+    <ClInclude Include="Frame.h" />
     <ClInclude Include="ICommand.h" />
+    <ClInclude Include="Memory.h" />
+    <ClInclude Include="PageTableEntry.h" />
+    <ClInclude Include="Process.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
