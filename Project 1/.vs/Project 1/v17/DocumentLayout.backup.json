@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Project 1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Memory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Memory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Process.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Process.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\BackingStore.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -17,6 +17,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Memory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Memory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Memory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Memory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\PageTableEntry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -29,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\CacheBlock.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:CacheBlock.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Process.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Process.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Command.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -62,9 +62,9 @@
               "Title": "Project 1.cpp",
               "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Project 1.cpp",
               "RelativeDocumentMoniker": "Project 1.cpp",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Project 1.cpp*",
-              "RelativeToolTip": "Project 1.cpp*",
-              "ViewState": "AgIAAP0AAAAAAAAAAAAswAwBAACLAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Project 1.cpp",
+              "RelativeToolTip": "Project 1.cpp",
+              "ViewState": "AgIAANYAAAAAAAAAAAAAAOAAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-08T18:44:59.911Z",
               "IsPinned": true,
@@ -85,13 +85,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Memory.cpp",
               "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Memory.cpp",
               "RelativeDocumentMoniker": "Memory.cpp",
               "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Memory.cpp",
               "RelativeToolTip": "Memory.cpp",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAEwAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEwAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-22T17:06:42.644Z",
               "EditorCaption": ""
@@ -111,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PageTableEntry.h",
               "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\PageTableEntry.h",
               "RelativeDocumentMoniker": "PageTableEntry.h",
@@ -124,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Frame.h",
               "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Frame.h",
               "RelativeDocumentMoniker": "Frame.h",
@@ -137,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "CacheBlock.h",
               "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\CacheBlock.h",
               "RelativeDocumentMoniker": "CacheBlock.h",
@@ -150,13 +150,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "Process.h",
               "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Process.h",
               "RelativeDocumentMoniker": "Process.h",
               "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Process.h",
               "RelativeToolTip": "Process.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB8AAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-10-22T14:19:34.869Z",
               "EditorCaption": ""
