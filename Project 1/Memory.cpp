@@ -73,11 +73,11 @@ int Memory::FindMF()
 void Memory::FlushCache(int pid)
 {
 	for (auto& block : cache) {
-		if (block.dirty && block.valid) {
+		if (block.dirty && block.inUse) {
 			int frameIndex = block.tag;
 		}
 
-		block.valid = false;
+		block.inUse = false;
 	}
 }
 

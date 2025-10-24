@@ -1,6 +1,6 @@
 #pragma once
 
 struct PageTableEntry {
-	int frameNum = -1;
-	bool valid = false;
+	int frameBlock = -1;
+	int cacheBlock = -1;
 };

@@ -5,7 +5,7 @@ class Frame
 {
 public:
 	bool dirty;
-	bool valid;
+	bool inUse;
 	std::vector<uint8_t> data;
 
 	int pid;
@@ -14,7 +14,7 @@ public:
 	int useCount;
 
 	Frame(int dataSize) :
-	pid(-1), pageNum(-1), lastUsed(0), useCount(0), dirty(false), valid(false){
+	pid(-1), pageNum(-1), lastUsed(0), useCount(0), dirty(false), inUse(false){
 		data.resize(dataSize);
 	}
 };

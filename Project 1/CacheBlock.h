@@ -5,7 +5,7 @@ class CacheBlock
 {
 public:
 	bool dirty;
-	bool valid;
+	bool inUse;
 	std::vector<uint8_t> data;
 
 	int tag;
@@ -13,7 +13,7 @@ public:
 	int useCount;
 
 	CacheBlock(int dataSize) : 
-		dirty(false), valid(false), lastUsed(0), useCount(0), tag(-1) {
+		dirty(false), inUse(false), lastUsed(0), useCount(0), tag(-1) {
 		data.resize(dataSize);
 	}
 };

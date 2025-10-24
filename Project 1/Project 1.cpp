@@ -218,10 +218,29 @@ void CreateProcess(std::vector<std::string> args) {
 			return;
 		}
 	}
+	// In class notes:
+	// Each part of memory is made up of the same type of block
+	// When created, you allocate a page, no frame allocated right now since we arent loading it, and load into backing store
+	// C 1 7 => 
+	// bitwidth is 2
+	// Data is 1, the store blocks in use are then filled with this data
+	// 2 page, 2 frame, 2 backing store blocks
+	// Put backing store check for leftover size
+
+	// Each process can have a table that maps cache to frame
+	// R 2 => Nothing is loaded yet (frame is -1) => Page 0 is in backing store 0 => RAM retrieves next frame and sets data => 
+	// Load into cache using same data and set it to inUse => Update page table with cache and frame blocks => Update block counters
+	// R 6 => Not loaded => Pull backing store location into ram => RAM gets next frame and sets data => Load into cache => Set rest ^
+	
+	// N => All of cache gets reset
+	// R 1 && R 5 => Repeat => Update counters => Set cache => Set all none in use data bits to FF
+
+	// Create => put it into backing store => try to load => put it in frame => put it in cache
 
 	int pageCount = (bytes + blockSize - 1) / blockSize;
 	int logicalSize = pageCount * blockSize;
 
+	// Set current process if its the first new one (ie use a queue and the top is current)
 	currentProcess = new Process(pid, logicalSize, pageCount, backingStore);
 	
 	processList.push_back(currentProcess);
