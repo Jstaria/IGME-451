@@ -17,7 +17,6 @@ class Process
 public:
 	int pid;
 	int logicalSize;
-	int backingStoreStart;
 
 	std::vector<PageTableEntry> pageTable;
 

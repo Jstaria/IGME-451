@@ -4,6 +4,8 @@
 #include "Block.h"
 #include <map>
 #include "Process.h"
+#include <iostream>
+#include <iomanip>
 
 enum WriteMode { WRITEBACK, WRITETHROUGH };
 enum ReplacePolicy { LR, MR, LF, MF };
@@ -11,9 +13,14 @@ enum ReplacePolicy { LR, MR, LF, MF };
 class Memory
 {
 public:
-	std::vector<Block> memoryBlocks;
+	std::vector<Block> frameBlocks;
 	std::vector<Block> cacheBlocks;
 	std::vector<Block> storeBlocks;
+
+	int bitWidth;
+	int blockSize;
+	int storeLastUsed = 0;
+	int frameLastUsed = 0;
 
 	WriteMode cacheWriteMode = WRITETHROUGH;
 	WriteMode memoryWriteMode = WRITETHROUGH;
@@ -25,11 +32,19 @@ public:
 	int FindLF();
 	int FindMF();
 
-	void FlushCache(int pid);
-	int LoadFromStore(int pid, int pageNum);
-	void WriteToStore(Process *process, int bitWidth);
+	void Initialize(int frameSize, int storeSize, int cacheSize);
 
-	uint8_t ReadByte(PageTableEntry entry, int offset, int bitWidth);
-	void WriteByte(PageTableEntry entry, int offset, int bitWidth);
+	void FlushCache(Process* process);
+	void LoadFromStore(Process* process, uint8_t logicalAddr);
+	void LoadFromMemory(Process* process, uint8_t logicalAddr);
+	void CheckLoad(Process* process, uint8_t logicalAddr);
+	void WriteToStore(Process *process, uint8_t data);
+	void WriteToStore(Block &block, PageTableEntry entry);
+
+	uint8_t ReadByte(Process* process, uint8_t logicalAddr);
+	void WriteByte(Process* process, uint8_t logicalAddr, uint8_t data);
+
+	void DeleteProcess(Process* process);
+	void PrintCurrentProcessInfo(Process* process);
 };
 

@@ -25,7 +25,8 @@ bool verboseMode = false;
 bool inSim = false;
 
 Process* currentProcess;
-queue<Process*> processQueue;
+vector<Process*> processQueue;
+int processQueueIndex;
 vector<int> pidList;
 
 Memory memory;
@@ -69,6 +70,9 @@ void BitWidth(std::vector<std::string> args) {
 
 	blockSize = width;
 	bitWidth = number;
+
+	memory.bitWidth = bitWidth;
+	memory.blockSize = blockSize;
 }
 
 void Page(std::vector<std::string> args) {
@@ -210,7 +214,7 @@ void StartSimulation(std::vector<std::string> args) {
 #pragma region AfterSim
 void CreateProcess(std::vector<std::string> args) {
 	if (args.size() < 3) return;
-	
+
 	int pid = stoi(args[1]);
 	int bytes = stoi(args[2]);
 
@@ -236,7 +240,7 @@ void CreateProcess(std::vector<std::string> args) {
 	// R 2 => Nothing is loaded yet (frame is -1) => Page 0 is in backing store 0 => RAM retrieves next frame and sets data => 
 	// Load into cache using same data and set it to inUse => Update page table with cache and frame blocks => Update block counters
 	// R 6 => Not loaded => Pull backing store location into ram => RAM gets next frame and sets data => Load into cache => Set rest ^
-	
+
 	// N => All of cache gets reset
 	// R 1 && R 5 => Repeat => Update counters => Set cache => Set all none in use data bits to FF
 
@@ -246,9 +250,9 @@ void CreateProcess(std::vector<std::string> args) {
 	int logicalSize = pageCount * blockSize;
 
 	// Set current process if its the first new one (ie use a queue and the top is current)
-	
-	processQueue.push(new Process(pid, logicalSize, pageCount));
-	memory.WriteToStore(processQueue.back(), bitWidth);
+
+	processQueue.push_back(new Process(pid, logicalSize, pageCount));
+	memory.WriteToStore(processQueue.back(), 0xFF);
 
 	if (!currentProcess) currentProcess = processQueue.front();
 
@@ -257,16 +261,45 @@ void CreateProcess(std::vector<std::string> args) {
 
 void DumpInfo(std::vector<std::string> args) {
 	cout << "Dumped Info" << endl;
+
+	memory.PrintCurrentProcessInfo(currentProcess);
 }
 
 void DeleteProcess(std::vector<std::string> args) {
 	DumpInfo(args);
 
 	cout << "DeletedProcess" << endl;
+
+	int pidToRemove = currentProcess->pid;
+
+	pidList.erase(std::remove_if(pidList.begin(), pidList.end(),
+		[pidToRemove](int p) {
+			return p == pidToRemove;
+		}),
+		pidList.end());
+
+	memory.DeleteProcess(currentProcess);
+	processQueue.erase(
+		std::remove_if(processQueue.begin(), processQueue.end(),
+			[pidToRemove](Process* p) {
+				return p->pid == pidToRemove;
+			}),
+		processQueue.end()
+	);
+	processQueueIndex--;
 }
 
 void AdvanceToNextProcess(std::vector<std::string> args) {
+	if (processQueue.size() == 0) {
+		cout << "Nothing in queue!" << endl;
+		return;
+	}
+	
 	cout << "Advanced to next Process" << endl;
+	
+	memory.FlushCache(currentProcess);
+	processQueueIndex = (processQueueIndex + 1) % processQueue.size();
+	currentProcess = processQueue[processQueueIndex];
 }
 
 void VerboseMode(std::vector<std::string> args) {
@@ -326,7 +359,11 @@ int main()
 		currentSetOfCommands[args[0]].CallCommand(args);
 
 		if (tolower(input[0]) == 'z')
+		{
 			currentSetOfCommands = inSimCommands;
+			memory.Initialize(numFrames, numStoreBlocks, numCacheBlocks);
+		}
+
 
 		if (tolower(input[0]) == 'q')
 			break;

@@ -1,18 +1,6 @@
 ﻿  Memory.cpp
-D:\Profiles\jws8554\source\repos\IGME-451\Project 1\BackingStore.h(13,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\BackingStore.h(13,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'Memory.cpp')
   
-D:\Profiles\jws8554\source\repos\IGME-451\Project 1\Memory.cpp(16,12): warning C4305: 'initializing': truncation from '__int64' to 'int'
-D:\Profiles\jws8554\source\repos\IGME-451\Project 1\Memory.cpp(16,14): warning C4309: 'initializing': truncation of constant value
-  Project 1.cpp
-D:\Profiles\jws8554\source\repos\IGME-451\Project 1\BackingStore.h(13,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'Project%201.cpp')
-  
-D:\Profiles\jws8554\source\repos\IGME-451\Project 1\Project 1.cpp(67,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Profiles\jws8554\source\repos\IGME-451\Project 1\Project 1.cpp(81,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Profiles\jws8554\source\repos\IGME-451\Project 1\Project 1.cpp(95,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Profiles\jws8554\source\repos\IGME-451\Project 1\Project 1.cpp(109,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Profiles\jws8554\source\repos\IGME-451\Project 1\Project 1.cpp(123,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
-D:\Profiles\jws8554\source\repos\IGME-451\Project 1\Memory.cpp(11,1): warning C4715: 'Memory::GetReplacementFrame': not all control paths return a value
-  Project 1.vcxproj -> D:\Profiles\jws8554\Source\Repos\IGME-451\Project 1\x64\Debug\Project 1.exe
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Memory.cpp(11,1): warning C4715: 'Memory::GetReplacementFrame': not all control paths return a value
+  Project 1.vcxproj -> C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\x64\Debug\Project 1.exe
