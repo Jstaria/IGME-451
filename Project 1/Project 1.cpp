@@ -9,6 +9,7 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include <queue>
 
 #include "Command.h"
 #include "Memory.h"
@@ -24,7 +25,8 @@ bool verboseMode = false;
 bool inSim = false;
 
 Process* currentProcess;
-vector<Process*> processList;
+queue<Process*> processQueue;
+vector<int> pidList;
 
 Memory memory;
 BackingStore backingStore;
@@ -212,12 +214,15 @@ void CreateProcess(std::vector<std::string> args) {
 	int pid = stoi(args[1]);
 	int bytes = stoi(args[2]);
 
-	for (auto& p : processList) {
-		if (p->pid == pid) {
+	for (auto& p : pidList) {
+		if (p == pid) {
 			cout << "Process ID already in use!" << endl;
 			return;
 		}
 	}
+
+	pidList.push_back(pid);
+
 	// In class notes:
 	// Each part of memory is made up of the same type of block
 	// When created, you allocate a page, no frame allocated right now since we arent loading it, and load into backing store
@@ -241,9 +246,11 @@ void CreateProcess(std::vector<std::string> args) {
 	int logicalSize = pageCount * blockSize;
 
 	// Set current process if its the first new one (ie use a queue and the top is current)
-	currentProcess = new Process(pid, logicalSize, pageCount, backingStore);
 	
-	processList.push_back(currentProcess);
+	processQueue.push(new Process(pid, logicalSize, pageCount));
+	memory.WriteToStore(processQueue.back(), bitWidth);
+
+	if (!currentProcess) currentProcess = processQueue.front();
 
 	cout << "Created Process" << endl;
 }

@@ -1,49 +1,45 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\",
+  "WorkspaceRootPath": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Project 1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Project 1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Process.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Process.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\BackingStore.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:BackingStore.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Memory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Memory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Memory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Memory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Memory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Memory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\PageTableEntry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Block.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Block.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Project 1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Project 1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Block.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Block.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\PageTableEntry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:PageTableEntry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Frame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Frame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Process.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Process.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\CacheBlock.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:CacheBlock.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Command.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Command.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Command.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\ICommand.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\ICommand.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:ICommand.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Command.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Command.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1F103EAA-3B52-4AE5-8039-8D2EF6F20DD0}|Project 1.vcxproj|solutionrelative:Command.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -54,17 +50,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Project 1.cpp",
-              "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Project 1.cpp",
+              "DocumentMoniker": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Project 1.cpp",
               "RelativeDocumentMoniker": "Project 1.cpp",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Project 1.cpp*",
-              "RelativeToolTip": "Project 1.cpp*",
-              "ViewState": "AgIAANAAAAAAAAAAAAAAAOEAAAAnAAAAAAAAAA==",
+              "ToolTip": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Project 1.cpp",
+              "RelativeToolTip": "Project 1.cpp",
+              "ViewState": "AgIAAO4AAAAAAAAAAAAAAPsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-08T18:44:59.911Z",
               "IsPinned": true,
@@ -73,131 +69,121 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "BackingStore.h",
-              "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\BackingStore.h",
-              "RelativeDocumentMoniker": "BackingStore.h",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\BackingStore.h",
-              "RelativeToolTip": "BackingStore.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-22T17:41:25.842Z",
+              "Title": "Block.cpp",
+              "DocumentMoniker": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Block.cpp",
+              "RelativeDocumentMoniker": "Block.cpp",
+              "ToolTip": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Block.cpp",
+              "RelativeToolTip": "Block.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-27T14:47:28.453Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Memory.cpp",
-              "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Memory.cpp",
+              "DocumentMoniker": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Memory.cpp",
               "RelativeDocumentMoniker": "Memory.cpp",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Memory.cpp",
-              "RelativeToolTip": "Memory.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEwAAAAeAAAAAAAAAA==",
+              "ToolTip": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Memory.cpp*",
+              "RelativeToolTip": "Memory.cpp*",
+              "ViewState": "AgIAAFoAAAAAAAAAAAASwGIAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-22T17:06:42.644Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Memory.h",
-              "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Memory.h",
-              "RelativeDocumentMoniker": "Memory.h",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Memory.h",
-              "RelativeToolTip": "Memory.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-22T16:09:45.506Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
               "Title": "PageTableEntry.h",
-              "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\PageTableEntry.h",
+              "DocumentMoniker": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\PageTableEntry.h",
               "RelativeDocumentMoniker": "PageTableEntry.h",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\PageTableEntry.h",
+              "ToolTip": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\PageTableEntry.h",
               "RelativeToolTip": "PageTableEntry.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-10-22T16:07:33.189Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Frame.h",
-              "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Frame.h",
-              "RelativeDocumentMoniker": "Frame.h",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Frame.h",
-              "RelativeToolTip": "Frame.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-22T15:45:21.964Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CacheBlock.h",
-              "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\CacheBlock.h",
-              "RelativeDocumentMoniker": "CacheBlock.h",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\CacheBlock.h",
-              "RelativeToolTip": "CacheBlock.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA+AAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Block.h",
+              "DocumentMoniker": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Block.h",
+              "RelativeDocumentMoniker": "Block.h",
+              "ToolTip": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Block.h",
+              "RelativeToolTip": "Block.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-10-22T15:38:11.865Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Process.h",
-              "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Process.h",
+              "DocumentMoniker": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Process.h",
               "RelativeDocumentMoniker": "Process.h",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Process.h",
+              "ToolTip": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Process.h",
               "RelativeToolTip": "Process.h",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB8AAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-10-22T14:19:34.869Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "Command.cpp",
-              "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Command.cpp",
+              "DocumentMoniker": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Command.cpp",
               "RelativeDocumentMoniker": "Command.cpp",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Command.cpp",
+              "ToolTip": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Command.cpp",
               "RelativeToolTip": "Command.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-15T14:28:11.61Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-15T14:28:11.61Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Command.h",
+              "DocumentMoniker": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Command.h",
+              "RelativeDocumentMoniker": "Command.h",
+              "ToolTip": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Command.h",
+              "RelativeToolTip": "Command.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-10-15T14:20:16.755Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Command.h",
-              "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Command.h",
-              "RelativeDocumentMoniker": "Command.h",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\Command.h",
-              "RelativeToolTip": "Command.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-15T14:20:16.755Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
               "Title": "ICommand.h",
-              "DocumentMoniker": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\ICommand.h",
+              "DocumentMoniker": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\ICommand.h",
               "RelativeDocumentMoniker": "ICommand.h",
-              "ToolTip": "C:\\Users\\Joseph Staria\\source\\repos\\IGME-451\\Project 1\\ICommand.h",
+              "ToolTip": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\ICommand.h",
               "RelativeToolTip": "ICommand.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-15T14:17:31.941Z",
+              "WhenOpened": "2025-10-15T14:17:31.941Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Memory.h",
+              "DocumentMoniker": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Memory.h",
+              "RelativeDocumentMoniker": "Memory.h",
+              "ToolTip": "D:\\Profiles\\jws8554\\source\\repos\\IGME-451\\Project 1\\Memory.h",
+              "RelativeToolTip": "Memory.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-10-22T16:09:45.506Z",
               "EditorCaption": ""
             }
           ]

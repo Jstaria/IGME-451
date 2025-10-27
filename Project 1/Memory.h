@@ -1,8 +1,9 @@
 #pragma once
 
 #include <vector>
-#include "CacheBlock.h"
-#include "Frame.h"
+#include "Block.h"
+#include <map>
+#include "Process.h"
 
 enum WriteMode { WRITEBACK, WRITETHROUGH };
 enum ReplacePolicy { LR, MR, LF, MF };
@@ -10,8 +11,9 @@ enum ReplacePolicy { LR, MR, LF, MF };
 class Memory
 {
 public:
-	std::vector<Frame> memory;
-	std::vector<CacheBlock> cache;
+	std::vector<Block> memoryBlocks;
+	std::vector<Block> cacheBlocks;
+	std::vector<Block> storeBlocks;
 
 	WriteMode cacheWriteMode = WRITETHROUGH;
 	WriteMode memoryWriteMode = WRITETHROUGH;
@@ -25,6 +27,9 @@ public:
 
 	void FlushCache(int pid);
 	int LoadFromStore(int pid, int pageNum);
-	int WriteToStore(int pid, int pageNum, int frame);
+	void WriteToStore(Process *process, int bitWidth);
+
+	uint8_t ReadByte(PageTableEntry entry, int offset, int bitWidth);
+	void WriteByte(PageTableEntry entry, int offset, int bitWidth);
 };
 

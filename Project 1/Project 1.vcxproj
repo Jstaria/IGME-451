@@ -124,7 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BackingStore.cpp" />
-    <ClCompile Include="CacheBlock.cpp" />
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Memory.cpp" />
@@ -133,7 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackingStore.h" />
-    <ClInclude Include="CacheBlock.h" />
+    <ClInclude Include="Block.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="ICommand.h" />

@@ -19,22 +19,15 @@ public:
 	int logicalSize;
 	int backingStoreStart;
 
-	BackingStore &backingStore;
-
 	std::vector<PageTableEntry> pageTable;
 
 	Stats cacheStats, memoryStats, storeStats;
 
 public:
-	Process(int pid, int logicalSize, int pageTableSize, BackingStore &backingStore) :
-		pid(pid), logicalSize(logicalSize), backingStore(backingStore) {
+	Process(int pid, int logicalSize, int pageTableSize) :
+		pid(pid), logicalSize(logicalSize) {
 		
-		pageTable.resize(pageTableSize);
-		backingStoreStart = backingStore.storage.size();
-
-		for (int i = 0; i < logicalSize; i++) {
-			backingStore.storage.push_back(0);
-		}
+		pageTable.resize(pageTableSize);;
 	}
 };
 

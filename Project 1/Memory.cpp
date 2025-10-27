@@ -10,14 +10,15 @@ int Memory::GetReplacementFrame()
 	}
 }
 
+#pragma region Replacement
 int Memory::FindLR()
 {
 	int count = 99999999999;
 	int fid = 0;
 
-	for (int i = 0; i < memory.size();i++) {
-		if (memory[i].lastUsed < count) {
-			count = memory[i].lastUsed;
+	for (int i = 0; i < memoryBlocks.size();i++) {
+		if (memoryBlocks[i].lastUsed < count) {
+			count = memoryBlocks[i].lastUsed;
 			fid = i;
 		}
 	}
@@ -30,9 +31,9 @@ int Memory::FindMR()
 	int count = 0;
 	int fid = 0;
 
-	for (int i = 0; i < memory.size(); i++) {
-		if (memory[i].lastUsed >= count) {
-			count = memory[i].lastUsed;
+	for (int i = 0; i < memoryBlocks.size(); i++) {
+		if (memoryBlocks[i].lastUsed >= count) {
+			count = memoryBlocks[i].lastUsed;
 			fid = i;
 		}
 	}
@@ -45,9 +46,9 @@ int Memory::FindLF()
 	int count = 999999999;
 	int fid = 0;
 
-	for (int i = 0; i < memory.size(); i++) {
-		if (memory[i].useCount < count) {
-			count = memory[i].useCount;
+	for (int i = 0; i < memoryBlocks.size(); i++) {
+		if (memoryBlocks[i].useCount < count) {
+			count = memoryBlocks[i].useCount;
 			fid = i;
 		}
 	}
@@ -60,21 +61,30 @@ int Memory::FindMF()
 	int count = 0;
 	int fid = 0;
 
-	for (int i = 0; i < memory.size(); i++) {
-		if (memory[i].useCount >= count) {
-			count = memory[i].useCount;
+	for (int i = 0; i < memoryBlocks.size(); i++) {
+		if (memoryBlocks[i].useCount >= count) {
+			count = memoryBlocks[i].useCount;
 			fid = i;
 		}
 	}
 
 	return fid;
 }
+#pragma endregion
+
+uint8_t Memory::ReadByte(PageTableEntry entry, int offset, int blockSize)
+{
+	//int base = pageNum * blockSize;
+	//return storeBlocks[processStart[pid]].data[base + offset];
+	return 0xFF;
+}
+
 
 void Memory::FlushCache(int pid)
 {
-	for (auto& block : cache) {
+	for (auto& block : cacheBlocks) {
 		if (block.dirty && block.inUse) {
-			int frameIndex = block.tag;
+			int frameIndex = block.pid;
 		}
 
 		block.inUse = false;
@@ -86,7 +96,17 @@ int Memory::LoadFromStore(int pid, int pageNum)
 	return 0;
 }
 
-int Memory::WriteToStore(int pid, int pageNum, int frame)
+void Memory::WriteToStore(Process *process, int bitWidth)
 {
-	return 0;
+	std::vector<PageTableEntry> &table = process->pageTable;
+
+	int count = 0;
+	int storeBlock = 0;
+
+	while (count < table.size()) {
+		if (storeBlocks[storeBlock].inUse) continue;
+
+		table[count].storeBlock = storeBlock;
+		storeBlocks[storeBlock].data.resize(bitWidth, 0xFF);
+	}
 }
