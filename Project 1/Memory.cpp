@@ -87,9 +87,8 @@ uint8_t Memory::ReadByte(Process* process, uint8_t logicalAddr)
 	int pageNum = logicalAddr / blockSize;
 	int offset = logicalAddr % blockSize;
 
-	int block = table[pageNum].cacheBlock;
-
 	CheckLoad(process, logicalAddr);
+	int block = table[pageNum].cacheBlock;
 
 	return cacheBlocks[block].data[offset];
 }
@@ -102,9 +101,9 @@ void Memory::WriteByte(Process* process, uint8_t logicalAddr, uint8_t data) {
 	int pageNum = logicalAddr / blockSize;
 	int offset = logicalAddr % blockSize;
 
-	int block = table[pageNum].cacheBlock;
-
 	CheckLoad(process, logicalAddr);
+
+	int block = table[pageNum].cacheBlock;
 
 	cacheBlocks[block].data[offset] = data;
 	cacheBlocks[block].dirty = true;
@@ -127,6 +126,7 @@ void Memory::FlushCache(Process* process)
 		}
 
 		block.inUse = false;
+		entry.cacheBlock = -1;
 	}
 }
 
@@ -151,6 +151,7 @@ void Memory::LoadFromMemory(Process* process, uint8_t logicalAddr) {
 			cacheBlocks[i].useCount = 0;
 			cacheBlocks[i].lastUsed = 0;
 			cacheBlocks[i].inUse = true;
+			break;
 		}
 	}
 }
@@ -172,6 +173,8 @@ void Memory::LoadFromStore(Process* process, uint8_t logicalAddr)
 
 	// Set replacement frame to the store block
 	frameBlocks[frame] = block;
+	frameBlocks[frame].useCount++;
+	frameBlocks[frame].lastUsed = frameLastUsed++;
 	// Update page table
 	table[pageNum].frameBlock = frame;
 }
@@ -185,13 +188,14 @@ void Memory::CheckLoad(Process* process, uint8_t logicalAddr) {
 	int pageNum = logicalAddr / blockSize;
 	int offset = logicalAddr % blockSize;
 
-	int block = table[pageNum].cacheBlock;
-
-	if (!frameBlocks[table[pageNum].frameBlock].inUse)
+	if (table[pageNum].frameBlock == -1 || !frameBlocks[table[pageNum].frameBlock].inUse)
 		LoadFromStore(process, logicalAddr);
+	else process->memoryStats.hits++;
 
-	if (!cacheBlocks[block].inUse)
+	if (table[pageNum].cacheBlock == -1 || !cacheBlocks[table[pageNum].cacheBlock].inUse)
 		LoadFromMemory(process, logicalAddr);
+	else process->cacheStats.hits++;
+
 }
 
 void Memory::WriteToStore(Process* process, uint8_t data)
@@ -271,9 +275,9 @@ void Memory::PrintCurrentProcessInfo(Process* process)
 {
 	std::vector<PageTableEntry>& table = process->pageTable;
 
-	std::cout << "====================================================\n";
+	std::cout << "\n====================================================\n";
 	std::cout << "Process ID: " << process->pid << " Memory Dump\n";
-	std::cout << "====================================================\n";
+	std::cout << "====================================================\n\n";
 
 	// Header
 	std::cout << std::left
@@ -283,29 +287,49 @@ void Memory::PrintCurrentProcessInfo(Process* process)
 		<< std::setw(8) << "Store#"
 		<< std::setw(10) << "BlockAddr"
 		<< std::setw(6) << "Offset"
-		<< "Data (hex)\n";
+		<< "Data\n";
 	std::cout << "----------------------------------------------------\n";
 
 	// Iterate through all pages
 	for (size_t pageIndex = 0; pageIndex < table.size(); pageIndex++)
 	{
 		PageTableEntry& entry = table[pageIndex];
-		Block& storeBlock = storeBlocks[entry.storeBlock];
+		Block& block = 
+			entry.cacheBlock != -1 ? cacheBlocks[entry.cacheBlock] :
+			entry.frameBlock != -1 ? frameBlocks[entry.frameBlock] :
+			storeBlocks[entry.storeBlock];
 
 		// Iterate through each byte in the block
-		for (size_t offset = 0; offset < storeBlock.data.size(); offset++)
+		for (size_t offset = 0; offset < block.data.size(); offset++)
 		{
-			std::cout << std::setw(6) << pageIndex
+			std::cout << std::uppercase << std::setw(6) << pageIndex
 				<< std::setw(8) << entry.cacheBlock
 				<< std::setw(8) << entry.frameBlock
 				<< std::setw(8) << entry.storeBlock
 				<< std::setw(10) << pageIndex * blockSize + offset  // starting address of block
 				<< std::setw(6) << offset
 				<< "0x" << std::hex << std::setw(2) << std::setfill('0')
-				<< (int)storeBlock.data[offset]
+				<< (int)block.data[offset]
 				<< std::dec << std::setfill(' ') << "\n";
 		}
 	}
 
-	std::cout << "====================================================\n";
+	std::cout << "====================================================\n\n";
+
+	std::cout << "=== Process " << process->pid << " Stats ===\n";
+
+	std::cout << "Cache : Hits = " << process->cacheStats.hits
+		<< ", Misses = " << process->cacheStats.misses
+		<< ", Hit Ratio = " << process->cacheStats.hitRatio()
+		<< ", Miss Ratio = " << process->cacheStats.missRatio() << "\n";
+
+	std::cout << "Memory: Hits = " << process->memoryStats.hits
+		<< ", Misses = " << process->memoryStats.misses
+		<< ", Hit Ratio = " << process->memoryStats.hitRatio()
+		<< ", Miss Ratio = " << process->memoryStats.missRatio() << "\n";
+
+	std::cout << "Store : Hits = " << process->storeStats.hits
+		<< ", Misses = " << process->storeStats.misses
+		<< ", Hit Ratio = " << process->storeStats.hitRatio()
+		<< ", Miss Ratio = " << process->storeStats.missRatio() << "\n";
 }

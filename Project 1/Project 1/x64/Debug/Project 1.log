@@ -1,6 +1,27 @@
-﻿  Memory.cpp
+﻿  BackingStore.cpp
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\BackingStore.h(13,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'BackingStore.cpp')
+  
+  Block.cpp
+  Command.cpp
+  Frame.cpp
+  Memory.cpp
 C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\BackingStore.h(13,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'Memory.cpp')
   
+  Process.cpp
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\BackingStore.h(13,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Process.cpp')
+  
+  Project 1.cpp
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\BackingStore.h(13,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Project%201.cpp')
+  
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Project 1.cpp(68,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Project 1.cpp(85,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Project 1.cpp(99,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Project 1.cpp(113,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Project 1.cpp(127,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
 C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\Memory.cpp(11,1): warning C4715: 'Memory::GetReplacementFrame': not all control paths return a value
   Project 1.vcxproj -> C:\Users\Joseph Staria\source\repos\IGME-451\Project 1\x64\Debug\Project 1.exe

@@ -265,6 +265,19 @@ void DumpInfo(std::vector<std::string> args) {
 	memory.PrintCurrentProcessInfo(currentProcess);
 }
 
+void AdvanceToNextProcess(std::vector<std::string> args) {
+	if (processQueue.size() == 0) {
+		cout << "Nothing in queue!" << endl;
+		return;
+	}
+
+	cout << "Advanced to next Process" << endl;
+
+	memory.FlushCache(currentProcess);
+	processQueueIndex = (processQueueIndex + 1) % processQueue.size();
+	currentProcess = processQueue[processQueueIndex];
+}
+
 void DeleteProcess(std::vector<std::string> args) {
 	DumpInfo(args);
 
@@ -277,7 +290,7 @@ void DeleteProcess(std::vector<std::string> args) {
 			return p == pidToRemove;
 		}),
 		pidList.end());
-
+	memory.FlushCache(currentProcess);
 	memory.DeleteProcess(currentProcess);
 	processQueue.erase(
 		std::remove_if(processQueue.begin(), processQueue.end(),
@@ -287,19 +300,8 @@ void DeleteProcess(std::vector<std::string> args) {
 		processQueue.end()
 	);
 	processQueueIndex--;
-}
 
-void AdvanceToNextProcess(std::vector<std::string> args) {
-	if (processQueue.size() == 0) {
-		cout << "Nothing in queue!" << endl;
-		return;
-	}
-	
-	cout << "Advanced to next Process" << endl;
-	
-	memory.FlushCache(currentProcess);
-	processQueueIndex = (processQueueIndex + 1) % processQueue.size();
-	currentProcess = processQueue[processQueueIndex];
+	AdvanceToNextProcess(args);
 }
 
 void VerboseMode(std::vector<std::string> args) {
@@ -310,11 +312,35 @@ void VerboseMode(std::vector<std::string> args) {
 }
 
 void ReadLogicalAddress(std::vector<std::string> args) {
-	cout << "Read Address" << endl;
+	if (args.size() < 2) return;
+
+	int addr = stoi(args[1]);
+	int data = memory.ReadByte(currentProcess, addr);
+
+	if (verboseMode)
+		cout << "Policies: "
+		<< "\nCache Writing: " << memory.cacheWriteMode
+		<< "\nMemory Writing: " << memory.memoryWriteMode
+		<< "\nMemory Replacement: " << memory.memoryReplacePolicy << endl;
+
+		cout << "Read Data: 0x" << std::hex << std::uppercase << std::setw(2) << std::setfill('0') << data << " from Address: 0x" << addr << std::setfill(' ') << endl;
 }
 
 void WriteLogicalAddress(std::vector<std::string> args) {
-	cout << "Wrote Address" << endl;
+	if (args.size() < 3) return;
+
+	if (verboseMode)
+		cout << "Policies: "
+		<< "\nCache Writing: " << memory.cacheWriteMode
+		<< "\nMemory Writing: " << memory.memoryWriteMode
+		<< "\nMemory Replacement: " << memory.memoryReplacePolicy << endl;
+
+	int data = stoi(args[2]);
+	int addr = stoi(args[1]);
+
+	memory.WriteByte(currentProcess, addr, data);
+
+	cout << "Wrote 0x" << std::hex << std::uppercase << std::setw(2) << std::setfill('0') << data << " to Address: 0x" << addr << std::setfill(' ') << endl;
 }
 #pragma endregion
 

@@ -5,6 +5,7 @@
 #include <map>
 #include "Process.h"
 #include <iostream>
+#include <sstream>
 #include <iomanip>
 
 enum WriteMode { WRITEBACK, WRITETHROUGH };
@@ -24,7 +25,7 @@ public:
 
 	WriteMode cacheWriteMode = WRITETHROUGH;
 	WriteMode memoryWriteMode = WRITETHROUGH;
-	ReplacePolicy memoryReplacePolicy = MR;
+	ReplacePolicy memoryReplacePolicy = LF;
 
 	int GetReplacementFrame();
 	int FindLR();
@@ -46,5 +47,7 @@ public:
 
 	void DeleteProcess(Process* process);
 	void PrintCurrentProcessInfo(Process* process);
+
+	static std::string HexField(unsigned value, int digits);
 };
 
