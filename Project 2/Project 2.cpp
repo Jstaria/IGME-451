@@ -16,35 +16,37 @@
 using namespace std;
 
 map<string, Command> currentSetOfCommands;
-thread threads[MAX_THREADS];
-vector<thread::id> threadIDsInUse;
+map<int, thread> threads;
+int ids;
+
 // First create thread pool and give it something to print out to make sure it works
 // Then add heavier random for loop to test working threads
 // Thread pool should have a set amt of threads that can be accessible, with queue for overloading
 
 // Test in release
+void PrintThreadHello(vector<string> args, int id) {
 
-void CreateThread(vector<string> args) {
-	for (int i = 0; i < MAX_THREADS; i++) {
-		auto it = std::find(threadIDsInUse.begin(), threadIDsInUse.end(), threads[i].get_id());
-		
-		if (it == threadIDsInUse.end()) {
-			threads[i] = thread{ PrintThreadHello, args, threads[i].get_id()};
-			threads[i].detach();
-			threadIDsInUse.push_back(threads[i].get_id());
+	int rand = std::rand() * 10;
 
-			break;
-		}
+	// Gen number, if number big enough, split up the threads into multiple and dispatch
+
+	for (int i = 0; i < rand; i++) {
+		cout << "Hello from thread: " << id << "!" << endl;
+		int rn = std::rand();
 	}
+
+	threads.erase(id);
 }
 
-void PrintThreadHello(vector<string> args, thread::id id) {
-	cout << "Hello from thread: " << id << "!" << endl;
+void CreateThread(vector<string> args) {
 
-	auto it = std::find(threadIDsInUse.begin(), threadIDsInUse.end(), id);
+	int number = args.size() == 2 ? stoi(args[1]) : 1;
 
-	if (it != threadIDsInUse.end()) {
-		threadIDsInUse.erase(it);
+	for (int i = 0; i < number; i++) {
+			threads.emplace(ids, thread(PrintThreadHello, std::move(args), std::move(ids)));
+			threads[ids].detach();
+
+			ids++;
 	}
 }
 
