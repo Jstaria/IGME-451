@@ -1,86 +1,197 @@
-// Project 2.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#define MAX_THREADS 32
+#define MAX_THREADS 1024
+#define SPLIT_THRESHOLD 25000000
 
 #include <iostream>
 #include <string>
-#include <iostream>
-#include <algorithm>
 #include <map>
 #include <thread>
+#include <vector>
+#include <atomic>
+#include <mutex>
+#include <chrono>
+#include <cstdlib>
+#include <ctime>
 
 #include "Command.h"
 #include "Helper.h"
 
 using namespace std;
 
+// ----------------------------------------------------------------
+// GLOBAL STATE
+// ----------------------------------------------------------------
+
 map<string, Command> currentSetOfCommands;
-map<int, thread> threads;
-int ids;
+map<string, atomic<int>> threadGroupCount;
 
-// First create thread pool and give it something to print out to make sure it works
-// Then add heavier random for loop to test working threads
-// Thread pool should have a set amt of threads that can be accessible, with queue for overloading
+static atomic<int> globalIds{ 0 };
+static atomic<int> totalActive{ 0 };
+static atomic<int> currentThreadCount{ 0 };
 
-// Test in release
-void PrintThreadHello(vector<string> args, int id) {
+std::mutex groupMapMutex;
 
-	int rand = std::rand() * 10;
+// ----------------------------------------------------------------
+// THREADED WORK
+// ----------------------------------------------------------------
 
-	// Gen number, if number big enough, split up the threads into multiple and dispatch
+void ThreadWork(vector<string> args, int id, int workload)
+{
+    string group = args[1];
 
-	for (int i = 0; i < rand; i++) {
-		cout << "Hello from thread: " << id << "!" << endl;
-		int rn = std::rand();
-	}
+    threadGroupCount[group]++;
+    totalActive++;
+    currentThreadCount++;
 
-	threads.erase(id);
+    if (workload > SPLIT_THRESHOLD && currentThreadCount.load() + 2 <= MAX_THREADS)
+    {
+        int half = workload / 2;
+
+        // spawn two children
+        int newId1 = globalIds++;
+        int newId2 = globalIds++;
+
+        std::thread(ThreadWork, args, newId1, half).detach();
+        std::thread(ThreadWork, args, newId2, half).detach();
+    }
+    else
+    {
+        int iterations = workload;
+
+        for (int i = 0; i < iterations; ++i)
+        {
+            int j = rand();
+            int k = rand();
+            volatile int l = j + k;
+        }
+
+        cout << "Thread " << id << " finished in group " << group << endl;
+    }
+
+    threadGroupCount[group]--;
+    totalActive--;
+    currentThreadCount--;
 }
 
-void CreateThread(vector<string> args) {
+// ----------------------------------------------------------------
+// SPAWN FUNCTION
+// ----------------------------------------------------------------
 
-	int number = args.size() == 2 ? stoi(args[1]) : 1;
+void spawnThread(const vector<string>& args, int workload)
+{
+    string group = args[1];
 
-	for (int i = 0; i < number; i++) {
-			threads.emplace(ids, thread(PrintThreadHello, std::move(args), std::move(ids)));
-			threads[ids].detach();
+    {
+        lock_guard<mutex> lock(groupMapMutex);
+        if (threadGroupCount.find(group) == threadGroupCount.end())
+            threadGroupCount.emplace(group, 0);
+    }
 
-			ids++;
-	}
+    if (currentThreadCount.load() >= MAX_THREADS)
+    {
+        cerr << "MAX_THREADS reached. Ignoring new thread request.\n";
+        return;
+    }
+
+    int id = globalIds++;
+
+    std::thread(ThreadWork, args, id, workload).detach();
 }
 
-void PrintHello(vector<string> args) {
-	cout << "Hello!" << endl;
+// ----------------------------------------------------------------
+// CREATE THREAD COMMAND
+// ----------------------------------------------------------------
+
+void CreateThread(vector<string> args)
+{
+    if (args.size() < 2)
+    {
+        cout << "Usage: c <groupName> [workload]\n";
+        return;
+    }
+
+    int workload = 1000000000;
+    if (args.size() >= 3)
+    {
+        try { workload = stoi(args[2]); }
+        catch (...) { workload = 100000000; }
+    }
+
+    spawnThread(args, workload);
+
+    cout << "| Threads Active |" << endl << endl;
+
+    while (true)
+    {
+        {
+            lock_guard<mutex> lock(groupMapMutex);
+            for (auto& pair : threadGroupCount)
+            {
+                cout << pair.first << ": " << pair.second.load() << endl;
+            }
+        }
+
+        cout << "\nTotal active threads: " << totalActive.load() << endl;
+        cout << "Current thread count: " << currentThreadCount.load() << endl;
+
+        if (totalActive.load() == 0)
+            break;
+
+        this_thread::sleep_for(chrono::milliseconds(400));
+    }
+
+    cout << "All threads in this run finished.\n";
 }
 
-void SetupCommands() {
-	currentSetOfCommands.emplace("p", PrintHello);
-	currentSetOfCommands.emplace("c", CreateThread);
+// ----------------------------------------------------------------
+// OTHER COMMANDS
+// ----------------------------------------------------------------
+
+void PrintHello(vector<string> args)
+{
+    cout << "Hello!" << endl;
 }
+
+void SetupCommands()
+{
+    currentSetOfCommands.emplace("p", PrintHello);
+    currentSetOfCommands.emplace("c", CreateThread);
+}
+
+// ----------------------------------------------------------------
+// MAIN
+// ----------------------------------------------------------------
 
 int main()
 {
-	SetupCommands();
+    srand((unsigned)time(nullptr));
 
-	std::cout << "----------------------------------------------------------------------\n|                         Thread Simulation                          |\n----------------------------------------------------------------------\n";
+    SetupCommands();
 
-	string input;
+    cout <<
+        "----------------------------------------------------------------------\n"
+        "|                         Thread Simulation                          |\n"
+        "----------------------------------------------------------------------\n";
 
-	vector<std::string> args;
+    string input;
+    vector<string> args;
 
-	while (true) {
-		cout << "Enter Command: ";
-		getline(cin, input);
+    while (true)
+    {
+        cout << "Enter Command: ";
+        getline(cin, input);
 
-		args = SplitArgs(input);
+        args = SplitArgs(input);
+        if (args.empty()) continue;
 
-		if (currentSetOfCommands.find(args[0]) != currentSetOfCommands.end())
-			currentSetOfCommands[args[0]].CallCommand(args);
+        if (tolower(args[0][0]) == 'q')
+            break;
 
-		if (tolower(input[0]) == 'q')
-			break;
-	}
+        auto it = currentSetOfCommands.find(args[0]);
+        if (it != currentSetOfCommands.end())
+            it->second.CallCommand(args);
+        else
+            cout << "Unknown command.\n";
+    }
 
-	return 0;
+    return 0;
 }
