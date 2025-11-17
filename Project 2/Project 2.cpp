@@ -34,6 +34,29 @@ std::mutex groupMapMutex;
 // THREADED WORK
 // ----------------------------------------------------------------
 
+void OneThread(vector<string> args, int id, int workload) {
+    string group = args[1];
+
+    threadGroupCount[group]++;
+    totalActive++;
+    currentThreadCount++;
+
+    int iterations = workload;
+
+    for (int i = 0; i < iterations; ++i)
+    {
+        int j = rand();
+        int k = rand();
+        volatile int l = j + k;
+    }
+
+    cout << "Thread " << id << " finished in group " << group << endl;
+
+    threadGroupCount[group]--;
+    totalActive--;
+    currentThreadCount--;
+}
+
 void ThreadWork(vector<string> args, int id, int workload)
 {
     string group = args[1];
@@ -76,7 +99,7 @@ void ThreadWork(vector<string> args, int id, int workload)
 // SPAWN FUNCTION
 // ----------------------------------------------------------------
 
-void spawnThread(const vector<string>& args, int workload)
+void SpawnThread(const vector<string>& args, int workload)
 {
     string group = args[1];
 
@@ -97,9 +120,69 @@ void spawnThread(const vector<string>& args, int workload)
     std::thread(ThreadWork, args, id, workload).detach();
 }
 
+void SpawnOneThread(const vector<string>& args, int workload)
+{
+    string group = args[1];
+
+    {
+        lock_guard<mutex> lock(groupMapMutex);
+        if (threadGroupCount.find(group) == threadGroupCount.end())
+            threadGroupCount.emplace(group, 0);
+    }
+
+    if (currentThreadCount.load() >= MAX_THREADS)
+    {
+        cerr << "MAX_THREADS reached. Ignoring new thread request.\n";
+        return;
+    }
+
+    int id = globalIds++;
+
+    std::thread(OneThread, args, id, workload).detach();
+}
 // ----------------------------------------------------------------
 // CREATE THREAD COMMAND
 // ----------------------------------------------------------------
+
+void CreateOneThread(vector<string> args) {
+    if (args.size() < 2)
+    {
+        cout << "Usage: c <groupName> [workload]\n";
+        return;
+    }
+
+    int workload = 1000000000;
+    if (args.size() >= 3)
+    {
+        try { workload = stoi(args[2]); }
+        catch (...) { workload = 100000000; }
+    }
+
+    SpawnOneThread(args, workload);
+
+    cout << "| Threads Active |" << endl << endl;
+
+    while (true)
+    {
+        {
+            lock_guard<mutex> lock(groupMapMutex);
+            for (auto& pair : threadGroupCount)
+            {
+                cout << pair.first << ": " << pair.second.load() << endl;
+            }
+        }
+
+        cout << "\nTotal active threads: " << totalActive.load() << endl;
+        cout << "Current thread count: " << currentThreadCount.load() << endl;
+
+        if (totalActive.load() == 0)
+            break;
+
+        this_thread::sleep_for(chrono::milliseconds(400));
+    }
+
+    cout << "All threads in this run finished.\n";
+}
 
 void CreateThread(vector<string> args)
 {
@@ -116,7 +199,7 @@ void CreateThread(vector<string> args)
         catch (...) { workload = 100000000; }
     }
 
-    spawnThread(args, workload);
+    SpawnThread(args, workload);
 
     cout << "| Threads Active |" << endl << endl;
 
@@ -155,6 +238,7 @@ void SetupCommands()
 {
     currentSetOfCommands.emplace("p", PrintHello);
     currentSetOfCommands.emplace("c", CreateThread);
+    currentSetOfCommands.emplace("co", CreateOneThread);
 }
 
 // ----------------------------------------------------------------
@@ -170,7 +254,10 @@ int main()
     cout <<
         "----------------------------------------------------------------------\n"
         "|                         Thread Simulation                          |\n"
-        "----------------------------------------------------------------------\n";
+        "----------------------------------------------------------------------\n\n"
+        "c <Name> <WorkLoad (0-MaxInt)> \n// Creates a thread that will request to split\n"
+        "co <Name> <WorkLoad (0-MaxInt)> \n// Creates a single thread that tries to do all the work by itself (To show the difference)\n\n";
+
 
     string input;
     vector<string> args;
