@@ -43,7 +43,6 @@ void PrintOutInfo() {
     cout << endl;
 }
 
-// Producer function
 void Producer(int id, SafeQueue<int>& q, int num_items) {
     for (int i = 0; i < num_items; ++i) {
         int item = id * 100 + i;
@@ -51,18 +50,17 @@ void Producer(int id, SafeQueue<int>& q, int num_items) {
         PrintOutInfo();
         std::cout << "Producer " << id << " produced: " << item << std::endl;
         int random = (int)(rand() % randomInterval);
-        std::this_thread::sleep_for(std::chrono::milliseconds(random)); // Simulate work
+        std::this_thread::sleep_for(std::chrono::milliseconds(random)); // simulate work
     }
 }
 
-// Consumer function
 void Consumer(int id, SafeQueue<int>& q) {
     while (true) {
         int item = q.pop();
         PrintOutInfo();
         std::cout << "Consumer " << id << " consumed: " << item << std::endl;
         int random = (int)(rand() % randomInterval);
-        std::this_thread::sleep_for(std::chrono::milliseconds(random)); // Simulate work
+        std::this_thread::sleep_for(std::chrono::milliseconds(random)); // simulate work
     }
 }
 
@@ -85,7 +83,7 @@ int main() {
     }
 
     std::cout << "All producers finished." << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(2)); // Allow some time for consumers
+    std::this_thread::sleep_for(std::chrono::seconds(2)); // consumers are allowed to finish
 
     return 0;
 }
