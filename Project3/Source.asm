@@ -6,7 +6,7 @@ var QWORD 100
 
 .CODE
 ; Assign stack allocation
-
+; sub rsp, 28h ?
 main PROC
 	XOR RCX, RCX
 	XOR RDX, RDX
