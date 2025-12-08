@@ -9,6 +9,7 @@ using namespace std;
 extern "C" int DoSum(int, int);
 extern "C" int DoSub(int, int);
 extern "C" int DoFac(int);
+extern "C" float* FillArray();
 
 int main()
 {
@@ -24,6 +25,11 @@ int main()
 
         cout << "Enter Number: "; cin >> num;
         cout << "Your total factorial was: " << DoFac(num) << endl;
+
+        cout << "Printed ASM array values: \n";
+
+        float* array = FillArray();
+
     }
 
     return 0;

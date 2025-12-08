@@ -1,6 +1,27 @@
+.DATA
+
+nums0 REAL4 1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0
+nums1 REAL4 65.0,85.0,45.0,96.0,74.0,2.0,53.0,12.0
+
+
 .CODE
 
 ;sub rsp, 100h
+
+
+
+FillArray Proc ; Does some math on two arrays
+	
+MOVAPS XMM0, nums0
+MOVAPS XMM1, nums1 
+
+DIVPS XMM0, XMM1
+	
+LEA RAX, nums0
+
+RET
+
+FillArray ENDP
 
 DoSum Proc ; Adds two numbers
 	MOV RAX, RCX
